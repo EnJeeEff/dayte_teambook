@@ -1,0 +1,38 @@
+% Russian add-on for kactlpkg: Cyrillic fonts, babel, Russian labels and
+% Cyrillic inside lstlisting (pdflatex listings cannot handle multibyte UTF-8
+% on its own, so every letter is mapped through `literate`).
+\ProvidesPackage{kactl-ru}
+
+\renewcommand{\kactldescriptionname}{Описание}
+\renewcommand{\kactlusagename}{Использование}
+\renewcommand{\kactlinputname}{Вход}
+\renewcommand{\kactlmemoryname}{Память}
+\renewcommand{\kactltimename}{Сложность}
+\renewcommand{\kactllinesname}{строк}
+
+% Courier (code font) has no Cyrillic. Code stays in T1 (Courier); Cyrillic letters
+% in code are printed by glyph number in T2A CM-Super typewriter. Any other T2A
+% \ttfamily text (e.g. \texttt in the table of contents) falls back to cmtt too.
+\DeclareFontFamily{T2A}{pcr}{}
+\DeclareFontShape{T2A}{pcr}{m}{n}{<->ssub * cmtt/m/n}{}
+\DeclareFontShape{T2A}{pcr}{m}{it}{<->ssub * cmtt/m/it}{}
+\DeclareFontShape{T2A}{pcr}{m}{sl}{<->ssub * cmtt/m/sl}{}
+\DeclareFontShape{T2A}{pcr}{b}{n}{<->ssub * cmtt/m/n}{}
+\DeclareFontShape{T2A}{pcr}{bx}{n}{<->ssub * cmtt/m/n}{}
+\newcommand{\cyrtt}{\fontencoding{T2A}\fontfamily{cmtt}\selectfont}
+\lstset{basicstyle=\footnotesize\fontencoding{T1}\ttfamily}
+
+\lstset{extendedchars=true}
+\lstset{literate=
+  {^}{\caret}{1} {~}{\tilde}{1} {\{}{\nicelbrace}{1} {\}}{\nicerbrace}{1}
+  {·}{{$\cdot$}}1 {–}{{-}}1 {—}{{-}}1 {α}{{$\alpha$}}1 {«}{{<<}}2 {»}{{>>}}2
+  {А}{{\cyrtt\char192}}1 {Б}{{\cyrtt\char193}}1 {В}{{\cyrtt\char194}}1 {Г}{{\cyrtt\char195}}1 {Д}{{\cyrtt\char196}}1 {Е}{{\cyrtt\char197}}1 {Ж}{{\cyrtt\char198}}1 {З}{{\cyrtt\char199}}1
+  {И}{{\cyrtt\char200}}1 {Й}{{\cyrtt\char201}}1 {К}{{\cyrtt\char202}}1 {Л}{{\cyrtt\char203}}1 {М}{{\cyrtt\char204}}1 {Н}{{\cyrtt\char205}}1 {О}{{\cyrtt\char206}}1 {П}{{\cyrtt\char207}}1
+  {Р}{{\cyrtt\char208}}1 {С}{{\cyrtt\char209}}1 {Т}{{\cyrtt\char210}}1 {У}{{\cyrtt\char211}}1 {Ф}{{\cyrtt\char212}}1 {Х}{{\cyrtt\char213}}1 {Ц}{{\cyrtt\char214}}1 {Ч}{{\cyrtt\char215}}1
+  {Ш}{{\cyrtt\char216}}1 {Щ}{{\cyrtt\char217}}1 {Ъ}{{\cyrtt\char218}}1 {Ы}{{\cyrtt\char219}}1 {Ь}{{\cyrtt\char220}}1 {Э}{{\cyrtt\char221}}1 {Ю}{{\cyrtt\char222}}1 {Я}{{\cyrtt\char223}}1
+  {а}{{\cyrtt\char224}}1 {б}{{\cyrtt\char225}}1 {в}{{\cyrtt\char226}}1 {г}{{\cyrtt\char227}}1 {д}{{\cyrtt\char228}}1 {е}{{\cyrtt\char229}}1 {ж}{{\cyrtt\char230}}1 {з}{{\cyrtt\char231}}1
+  {и}{{\cyrtt\char232}}1 {й}{{\cyrtt\char233}}1 {к}{{\cyrtt\char234}}1 {л}{{\cyrtt\char235}}1 {м}{{\cyrtt\char236}}1 {н}{{\cyrtt\char237}}1 {о}{{\cyrtt\char238}}1 {п}{{\cyrtt\char239}}1
+  {р}{{\cyrtt\char240}}1 {с}{{\cyrtt\char241}}1 {т}{{\cyrtt\char242}}1 {у}{{\cyrtt\char243}}1 {ф}{{\cyrtt\char244}}1 {х}{{\cyrtt\char245}}1 {ц}{{\cyrtt\char246}}1 {ч}{{\cyrtt\char247}}1
+  {ш}{{\cyrtt\char248}}1 {щ}{{\cyrtt\char249}}1 {ъ}{{\cyrtt\char250}}1 {ы}{{\cyrtt\char251}}1 {ь}{{\cyrtt\char252}}1 {э}{{\cyrtt\char253}}1 {ю}{{\cyrtt\char254}}1 {я}{{\cyrtt\char255}}1
+  {Ё}{{\cyrtt\char156}}1 {ё}{{\cyrtt\char188}}1
+}

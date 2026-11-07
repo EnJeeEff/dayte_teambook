@@ -1,0 +1,45 @@
+\documentclass[9pt, a4paper, notitlepage]{extreport}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{kactlpkg}
+\usepackage{kactl-ru}
+\kactlcontentdir{content/teambook}
+
+\newcommand{\teamtitle}{Nizhny Novgorod HSE: dayte timofeyu finalku}
+\newcommand{\teammembers}{Getmanov Nikolai, Mikheev Nikita, Semenov Timofey}
+
+% Шапка каждой страницы: вуз и команда, список файлов, номер страницы
+\lhead{\teamtitle}
+
+\begin{document}
+	\pagestyle{empty}
+	\setcounter{page}{0}
+	\begin{center}
+		\strut
+		\vspace{5cm}\\
+		{\fontsize{35.83}{44}\selectfont \teamtitle\\}
+		\vspace{1.5cm}
+		{\huge \teammembers\\}
+		\vfill
+		{\huge \today}\\
+		\vspace{1cm}
+	\end{center}
+	\clearpage
+	\pagestyle{fancy}
+
+	\raggedcolumns % не растягивать колонки по вертикали
+	\begin{multicols*}{3}
+	\thispagestyle{fancy}
+	\setcounter{tocdepth}{0}
+	\tableofcontents
+	\thispagestyle{fancy}
+
+	\kactlchapter{contest}
+	\kactlchapter{combinatorics}
+	\kactlchapter{data-structures}
+	\kactlchapter{dp}
+	\kactlchapter{graph}
+	\kactlchapter{strings}
+	\kactlchapter{geometry}
+	\end{multicols*}
+\end{document}

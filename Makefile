@@ -18,6 +18,7 @@ help:
 	@echo "Available commands are:"
 	@echo "	make fast		- to build KACTL, quickly (only runs LaTeX once)"
 	@echo "	make kactl		- to build KACTL"
+	@echo "	make teambook		- to build the Russian team notebook (teambook.pdf)"
 	@echo "	make clean		- to clean up the build process"
 	@echo "	make veryclean		- to clean up and remove kactl.pdf"
 	@echo "	make test		- to run all the stress tests in stress-tests/"
@@ -35,13 +36,18 @@ kactl: test-session.pdf | build $(CPP_SHIM)
 	$(LATEXCMD) content/kactl.tex && $(LATEXCMD) content/kactl.tex
 	cp build/kactl.pdf kactl.pdf
 
+teambook: | build $(CPP_SHIM)
+	$(LATEXCMD) content/teambook.tex </dev/null && $(LATEXCMD) content/teambook.tex </dev/null
+	cp build/teambook.pdf teambook.pdf
+
 clean:
+	cd build && rm -f teambook.aux teambook.log teambook.toc teambook.pdf teambook.ptc teambook.out
 	cd build && rm -f kactl.aux kactl.log kactl.tmp kactl.toc kactl.pdf kactl.ptc
 
 veryclean: clean
 	rm -f kactl.pdf test-session.pdf
 
-.PHONY: help fast kactl clean veryclean
+.PHONY: help fast kactl teambook clean veryclean
 
 build:
 	mkdir -p build/
