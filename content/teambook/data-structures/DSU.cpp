@@ -1,7 +1,7 @@
 /**
  * Author: dayte timofeyu finalku
  * Description: Система непересекающихся множеств: объединение по размеру и сжатие путей.
- * Input: DSU d(n) --- элементы $0..n$; d.find(v), d.unite(a, b).
+ * Input: DSU d(n) --- элементы $0..n$; d.find(v), d.unite(a, b) --- true, если a и b были в разных множествах.
  * Time: O(\alpha(n))
  */
 struct DSU {
@@ -18,13 +18,15 @@ struct DSU {
         return parent[v] = find(parent[v]);
     }
 
-    void unite(int a, int b) {
+    bool unite(int a, int b) {
         a = find(a);
         b = find(b);
         if (a != b) {
             if (size[a] < size[b]) swap(a, b);
             parent[b] = a;
             size[a] += size[b];
+            return true;
         }
+        return false;
     }
 };

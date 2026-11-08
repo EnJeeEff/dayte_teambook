@@ -8,8 +8,12 @@
 \newcommand{\teamtitle}{Nizhny Novgorod HSE: dayte timofeyu finalku}
 \newcommand{\teammembers}{Getmanov Nikolai, Mikheev Nikita, Semenov Timofey}
 
-% Шапка каждой страницы: вуз и команда, список файлов, номер страницы
-\lhead{\teamtitle}
+% Шапка каждой страницы: слева вуз, команда и участники, справа список файлов и номер страницы
+\lhead{\teamtitle{} (Getmanov, Mikheev, Semenov)}
+\makeatletter
+\chead{}
+\rhead{\immediate\write18{python3 content/tex/preprocessor.py --print-header "\splitbotmarks\hdrmark|\botmarks\hdrmark" -o \@builddir/header2.tmp}\immediate\input{\@builddir/header2.tmp}\qquad\thepage}
+\makeatother
 
 \begin{document}
 	\pagestyle{empty}
